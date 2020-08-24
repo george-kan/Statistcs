@@ -1,2 +1,2 @@
-# Statistcs
+# Statistics
 Analysis of statistical concepts
