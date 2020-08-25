@@ -1,0 +1,49 @@
+---
+title: Statistical models and Estimators
+author: George
+date: '2020-08-25'
+slug: first-post
+categories: []
+tags:
+  - plot
+output:
+  html_document:
+    mathjax: local
+    self_contained: false
+---
+
+_Note: This blog serves two purposes for me.  
+1) I want to improve my understanding of statistics both by writing and by getting feedback. My understanding so far has mainly been influenced by [the MIT course on statistics](https://courses.edx.org/courses/course-v1:MITx+18.6501x+2T2020/course/) and therefore most topics will be based on this.   
+2) I want to learn how to present various analyses and data science related topics_
+
+## _Statistical models, what are they?_
+
+_All models are wrong_ 
+
+Statistical models are a way of approximating the results of a statistical experiment.
+Let's say that we observe the number of customers coming to a gas station every hour from 9-5. What we would see could be something like this:
+
+|Time interval|Customers|
+|:----:|:-----:|
+|9-10|  3  |
+|10-11|  2  |
+|11-12|  1  |
+|12-13|  3  |
+|13-14|  2  |
+|14-15|  1  |
+|15-16|  0  |
+|16-17|  3  |
+
+
+$$\displaystyle \{ \mathbb {P_\theta }\} _{\theta \in \Theta }$$
+
+
+
+```{r}
+x = seq(1, 10 , 0.1)
+plot(x, sqrt(x))
+```
+
+**Does this work?**
+
+$$ y_i = mx_i + c$$

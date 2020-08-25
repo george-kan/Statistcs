@@ -1,0 +1,73 @@
+---
+title: Statistical models and Estimators
+author: George
+date: '2020-08-25'
+slug: first-post
+categories: []
+tags:
+  - plot
+output:
+  html_document:
+    mathjax: local
+    self_contained: false
+---
+
+
+
+<p><em>Note: This blog serves two purposes for me.<br />
+1) I want to improve my understanding of statistics both by writing and by getting feedback. My understanding so far has mainly been influenced by <a href="https://courses.edx.org/courses/course-v1:MITx+18.6501x+2T2020/course/">the MIT course on statistics</a> and therefore most topics will be based on this.<br />
+2) I want to learn how to present various analyses and data science related topics</em></p>
+<div id="statistical-models-what-are-they" class="section level2">
+<h2><em>Statistical models, what are they?</em></h2>
+<p><em>All models are wrong</em></p>
+<p>Statistical models are a way of approximating the results of a statistical experiment.
+Let’s say that we observe the number of customers coming to a gas station every hour from 9-5. What we would see could be something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Time interval</th>
+<th align="center">Customers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">9-10</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">10-11</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">11-12</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">12-13</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">13-14</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">14-15</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">15-16</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">16-17</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\displaystyle \{ \mathbb {P_\theta }\} _{\theta \in \Theta }\]</span></p>
+<pre class="r"><code>x = seq(1, 10 , 0.1)
+plot(x, sqrt(x))</code></pre>
+<p><img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><strong>Does this work?</strong></p>
+<p><span class="math display">\[ y_i = mx_i + c\]</span></p>
+</div>
