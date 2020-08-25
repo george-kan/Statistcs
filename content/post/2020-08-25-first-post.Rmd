@@ -20,8 +20,8 @@ _Note: This blog serves two purposes for me.
 
 _All models are wrong_ 
 
-Statistical models are a way of approximating the results of a statistical experiment.
-Let's say that we observe the number of customers coming to a gas station every hour from 9-5. What we would see could be something like this:
+Statistical models are a way of approximating the results of a statistical experiment.  
+Let's say that we want to estimate the hourly number of customers coming to a gas station from 9-5 in order to assess how many people are needed in the shop. To that extent we measure the number of customers that we observed in a day and the results looked like this:
 
 |Time interval|Customers|
 |:----:|:-----:|
@@ -33,6 +33,25 @@ Let's say that we observe the number of customers coming to a gas station every 
 |14-15|  1  |
 |15-16|  0  |
 |16-17|  3  |
+
+Our goal is to be able to explain reality using probabilities. Ideally we would like to be able to answer questions such as:  
+1. _What is the probability that we will get more than 4 customers in any one hour interval of the day?_  
+2. _How many customers would we expect on average to get in a day?_  
+3. _Which time intervals have the lowest traffic?_
+
+Since we want to use probabilities, the first thing we need is a probability distribution that could be used in order to describe what we observe in reality. There are numerous probability distributions that we can choose from and none of them is the one that fully describes reality. But we still have to try to find one that seems reasonable given our data.
+
+What do we mean by reasonable? 
+Well in our particular example of the gas station above, it would be good if our distribution fulfilled the following properties:  
+* No negative values (Customers in an hour cannot be negative)  
+* Only integer values allowed (Customers in an hour have to be an integer number)
+
+But in order to narrow down our search more we have to go one step beyond.
+
+### Assumptions
+
+This part is tricky. We want to make certain assumptions about our model that will simplify the procedure of 
+
 
 
 $$\displaystyle \{ \mathbb {P_\theta }\} _{\theta \in \Theta }$$
