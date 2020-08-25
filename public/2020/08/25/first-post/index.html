@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.74.3" />
 
 
-<title>Statistical models and Estimators - A Hugo website</title>
-<meta property="og:title" content="Statistical models and Estimators - A Hugo website">
+<title>Statistical models - A Hugo website</title>
+<meta property="og:title" content="Statistical models - A Hugo website">
 
 
   <link href='/knowledge-1052014_1920.jpg' rel='icon' type='image/x-icon'/>
@@ -48,7 +48,7 @@
     
     <li><a href="/about/">About</a></li>
     
-    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    <li><a href="https://github.com/george-kan">GitHub</a></li>
     
     <li><a href="https://twitter.com/rstudio">Twitter</a></li>
     
@@ -65,7 +65,7 @@
     <span class="article-duration">2 min read</span>
     
 
-    <h1 class="article-title">Statistical models and Estimators</h1>
+    <h1 class="article-title">Statistical models</h1>
 
     
     <span class="article-date">2020-08-25</span>
@@ -75,9 +75,6 @@
       
 
 
-<p><em>Note: This blog serves two purposes for me.<br />
-1) I want to improve my understanding of statistics both by writing and by getting feedback. My understanding so far has mainly been influenced by <a href="https://courses.edx.org/courses/course-v1:MITx+18.6501x+2T2020/course/">the MIT course on statistics</a> and therefore most topics will be based on this.<br />
-2) I want to learn how to present various analyses and data science related topics</em></p>
 <div id="statistical-models-what-are-they" class="section level2">
 <h2><em>Statistical models, what are they?</em></h2>
 <p><em>All models are wrong</em></p>
@@ -132,19 +129,18 @@ Let’s say that we want to estimate the hourly number of customers coming to a 
 <p>Since we want to use probabilities, the first thing we need is a probability distribution that could be used in order to describe what we observe in reality. There are numerous probability distributions that we can choose from and none of them is the one that fully describes reality. But we still have to try to find one that seems reasonable given our data.</p>
 <p>What do we mean by reasonable?
 Well in our particular example of the gas station above, it would be good if our distribution fulfilled the following properties:<br />
-* No negative values (Customers in an hour cannot be negative)<br />
-* Only integer values allowed (Customers in an hour have to be an integer number)</p>
-<p>But in order to narrow down our search more we have to go one step beyond.</p>
-<div id="assumptions" class="section level3">
-<h3>Assumptions</h3>
-<p>This part is tricky. We want to make certain assumptions about our model that will simplify the procedure of</p>
+- No negative values (Customers in an hour cannot be negative)<br />
+- Only integer values allowed (Customers in an hour have to be an integer number)</p>
+<p>But in order to narrow down our search more we have to go one step beyond and make certain assumptions. Some of those could be:<br />
+- Do we think that all hours in a day follow the same probability distribution? Or are certain times more popular than others?
+- Do certain days have more customers than others and therefore the hourly probability distribution for those days should be different?</p>
+<p>These are very reasonable questions to ask about our model of reality. And depending on the answer (which depends on the data we observe) we have to adapt our probability distribution accordingly. This could be done for example by adding extra parameters or modelling some days separately perhaps.</p>
 <p><span class="math display">\[\displaystyle \{ \mathbb {P_\theta }\} _{\theta \in \Theta }\]</span></p>
 <pre class="r"><code>x = seq(1, 10 , 0.1)
 plot(x, sqrt(x))</code></pre>
 <p><img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p><strong>Does this work?</strong></p>
 <p><span class="math display">\[ y_i = mx_i + c\]</span></p>
-</div>
 </div>
 
     </div>
