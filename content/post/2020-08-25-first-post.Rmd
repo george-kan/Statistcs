@@ -12,12 +12,18 @@ output:
     self_contained: false
 ---
 
+```{r echo = F, warning = F}
+library(data.table)
+library(ggplot2)
+theme_set(theme_light())
+```
+
 ## _Statistical models, what are they?_
 
 _All models are wrong_ 
 
 Statistical models are a way of approximating the results of a statistical experiment.  
-Let's say that we want to estimate the hourly number of customers coming to a gas station from 9-5 in order to assess how many people are needed in the shop. To that extent we measure the number of customers that we observed in a day and the results looked like this:
+Let's say that we want to analyse the hourly number of customers coming to a gas station from 9-5 in order to assess how many people are needed in the shop. To that extent we measure the number of customers that we observed in a day and the results looked like this:
 
 |Time interval|Customers|
 |:----:|:-----:|
@@ -33,22 +39,42 @@ Let's say that we want to estimate the hourly number of customers coming to a ga
 Our goal is to be able to explain reality using probabilities. Ideally we would like to be able to answer questions such as:  
 1. _What is the probability that we will get more than 4 customers in any one hour interval of the day?_  
 2. _How many customers would we expect on average to get in a day?_  
-3. _Which time intervals have the lowest traffic?_
+3. _Which time intervals have the lowest traffic on average?_
 
 Since we want to use probabilities, the first thing we need is a probability distribution that could be used in order to describe what we observe in reality. There are numerous probability distributions that we can choose from and none of them is the one that fully describes reality. But we still have to try to find one that seems reasonable given our data.
 
 What do we mean by reasonable? 
 Well in our particular example of the gas station above, it would be good if our distribution fulfilled the following properties:  
 - No negative values (Customers in an hour cannot be negative)  
-- Only integer values allowed (Customers in an hour have to be an integer number)
+- Only integer values allowed (Customers in an hour have to be an integer number)  
+- Arrivals are independent of each other
 
 But in order to narrow down our search more we have to go one step beyond and make certain assumptions. Some of those could be:  
-- Do we think that all hours in a day follow the same probability distribution? Or are certain times more popular than others?
+- Do we think that all hours in a day follow the same probability distribution? Or are certain times more popular than others?  
 - Do certain days have more customers than others and therefore the hourly probability distribution for those days should be different?
 
-These are very reasonable questions to ask about our model of reality. And depending on the answer (which depends on the data we observe) we have to adapt our probability distribution accordingly. This could be done for example by adding extra parameters or modelling some days separately perhaps. 
+These are very reasonable questions to ask about our model of reality. And depending on the answer (which again depends on the data we observe) we have to adapt our probability distribution accordingly. This could be done for example by adding extra parameters or modeling some days separately. 
 
+Coming back to our example, a reasonable distribution for customers in an hour is a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution). How does a Poisson distribution look like?
 
+```{r echo = F}
+
+poisson_plot = data.table(x = 0:10)
+poisson_plot =poisson_plot[, list(x=rep(x,each=6), lambda= 1:6)]
+poisson_plot[, Probability := dpois(x, lambda)]
+
+ggplot(poisson_plot, aes(x, Probability, color = factor(lambda))) +
+  geom_point() +
+  scale_color_discrete(guide = F) +
+  scale_x_continuous(breaks = 0:10) +
+  facet_wrap(paste0("Lambda = ",lambda) ~ .) +
+  labs(x = "Customers") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        strip.text = element_text(colour = 'black'),
+        text = element_text(size=15))
+
+```
 
 
 
