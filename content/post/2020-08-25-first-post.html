@@ -1,5 +1,5 @@
 ---
-title: Statistical models
+title: Parametric statistical models
 author: George
 date: '2020-08-25'
 slug: first-post
@@ -16,9 +16,8 @@ output:
 
 <div id="statistical-models-what-are-they" class="section level2">
 <h2><em>Statistical models, what are they?</em></h2>
-<p><em>All models are wrong</em></p>
-<p>Statistical models are a way of approximating the results of a statistical experiment.<br />
-Let’s say that we want to analyse the hourly number of customers coming to a gas station from 9-5 in order to assess how many people are needed in the shop. To that extent we measure the number of customers that we observed in a day and the results looked like this:</p>
+<p>Statistical models are a way of approximating reality.<br />
+Let’s say that we want to analyse the hourly number of customers coming to a shop from 9-5 in order to assess how many people are needed to work. To that extent, we measure the number of customers that we observed in a day and the results looked like this:</p>
 <table>
 <thead>
 <tr class="header">
@@ -67,7 +66,7 @@ Let’s say that we want to analyse the hourly number of customers coming to a g
 3. <em>Which time intervals have the lowest traffic on average?</em></p>
 <p>Since we want to use probabilities, the first thing we need is a probability distribution that could be used in order to describe what we observe in reality. There are numerous probability distributions that we can choose from and none of them is the one that fully describes reality. But we still have to try to find one that seems reasonable given our data.</p>
 <p>What do we mean by reasonable?
-Well in our particular example of the gas station above, it would be good if our distribution fulfilled the following properties:<br />
+Well in our particular example of the shop above, it would be good if our distribution fulfilled the following properties:<br />
 - No negative values (Customers in an hour cannot be negative)<br />
 - Only integer values allowed (Customers in an hour have to be an integer number)<br />
 - Arrivals are independent of each other</p>
@@ -76,11 +75,16 @@ Well in our particular example of the gas station above, it would be good if our
 - Do certain days have more customers than others and therefore the hourly probability distribution for those days should be different?</p>
 <p>These are very reasonable questions to ask about our model of reality. And depending on the answer (which again depends on the data we observe) we have to adapt our probability distribution accordingly. This could be done for example by adding extra parameters or modeling some days separately.</p>
 <p>Coming back to our example, a reasonable distribution for customers in an hour is a <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a>. How does a Poisson distribution look like?</p>
-<p><img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p><span class="math display">\[\displaystyle \{ \mathbb {P_\theta }\} _{\theta \in \Theta }\]</span></p>
-<pre class="r"><code>x = seq(1, 10 , 0.1)
-plot(x, sqrt(x))</code></pre>
-<p><img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p><strong>Does this work?</strong></p>
-<p><span class="math display">\[ y_i = mx_i + c\]</span></p>
+<p><img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+As can be seen from the chart the Poisson distribution changes depending on the value of lambda that we select. For example, it is far more likely that we are going to have 0 or 1 customer in an hour if lambda equals 1 than if lambda equals 6.<br />
+Therefore, we can say that if our assumptions are correct, the good approximation for modeling the reality of customer arrivals is a Poisson distribution with a certain specific parameter lambda.</p>
+<p>Which brings us to the more formal definition of a statistical model:</p>
+<p>A statistical model is thought of as a pair <span class="math inline">\({\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}\)</span><br />
+The components of the pair are:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(S\)</span> is the sample space, as in a set that contains all possible observations we could make. In the shop example <span class="math inline">\(S\)</span> would be the set of all positive integers <a href="https://en.wikipedia.org/wiki/Natural_number#Notation"><span class="math inline">\(N^0\)</span></a></p></li>
+<li><p><span class="math inline">\({P}\)</span> is the family of all probability distributions on <span class="math inline">\(S\)</span>. In our example, these are all the Poisson distributions on the sample data.</p></li>
+<li><p><span class="math inline">\(\theta\)</span> is the parameter of our distribution. In our case this parameter is <strong>lambda</strong></p></li>
+<li><p><span class="math inline">\({\Theta}\)</span> is the parameter space. Basically where does our parameter(s) live? In the shop example, since we have a Poisson distribution lambda can only be positive and therefore <span class="math inline">\(\Theta = (0, +\infty)\)</span></p></li>
+</ol>
 </div>

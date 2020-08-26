@@ -12,14 +12,14 @@
     
     
     <item>
-      <title>Statistical models</title>
+      <title>Parametric statistical models</title>
       <link>/2020/08/25/first-post/</link>
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/08/25/first-post/</guid>
-      <description>Statistical models, what are they?All models are wrong
-Statistical models are a way of approximating the results of a statistical experiment.
-Let’s say that we want to analyse the hourly number of customers coming to a gas station from 9-5 in order to assess how many people are needed in the shop. To that extent we measure the number of customers that we observed in a day and the results looked like this:</description>
+      <description>Statistical models, what are they?Statistical models are a way of approximating reality.
+Let’s say that we want to analyse the hourly number of customers coming to a shop from 9-5 in order to assess how many people are needed to work. To that extent, we measure the number of customers that we observed in a day and the results looked like this:
+Time intervalCustomers9-10310-11211-12112-13313-14214-15115-16016-173Our goal is to be able to explain reality using probabilities.</description>
     </item>
     
     <item>
