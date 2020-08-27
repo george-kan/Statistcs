@@ -77,7 +77,7 @@ Well in our particular example of the shop above, it would be good if our distri
 <p>Coming back to our example, a reasonable distribution for customers in an hour is a <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a>. How does a Poisson distribution look like?</p>
 <p><img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 As can be seen from the chart the Poisson distribution changes depending on the value of lambda that we select. For example, it is far more likely that we are going to have 0 or 1 customer in an hour if lambda equals 1 than if lambda equals 6.<br />
-Therefore, we can say that if our assumptions are correct, the good approximation for modeling the reality of customer arrivals is a Poisson distribution with a certain specific parameter lambda.</p>
+Therefore, we can say that if our assumptions are correct, a good approximation for modeling the reality of customer arrivals is a Poisson distribution with a certain specific parameter lambda.</p>
 <p>Which brings us to the more formal definition of a statistical model:</p>
 <p>A statistical model is thought of as a pair <span class="math inline">\({\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}\)</span><br />
 The components of the pair are:</p>
@@ -87,4 +87,21 @@ The components of the pair are:</p>
 <li><p><span class="math inline">\(\theta\)</span> is the parameter of our distribution. In our case this parameter is <strong>lambda</strong></p></li>
 <li><p><span class="math inline">\({\Theta}\)</span> is the parameter space. Basically where does our parameter(s) live? In the shop example, since we have a Poisson distribution lambda can only be positive and therefore <span class="math inline">\(\Theta = (0, +\infty)\)</span></p></li>
 </ol>
+<div id="desirable-properties-of-statistical-models" class="section level3">
+<h3><em>Desirable properties of statistical models</em></h3>
+<div id="well-specified" class="section level4">
+<h4>Well specified</h4>
+<p><em>A model is well specified if for a certain value of the parameter <span class="math inline">\(\theta\)</span> we can obtain the true distribution (the distribution that governs reality).</em></p>
+<p>This means that if we have the space of all probability distributions (an infinite space which contains any distribution you can imagine) and we narrow it down to a family of distributions <span class="math inline">\(P_{\theta \in \Theta}\)</span> (green rectangle), then our model is well specified if the true distribution <span class="math inline">\(\color{blue}P\)</span> that is generating our data is included in that family (in the green rectangle).
+<img src="/post/2020-08-25-first-post_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+In our shop example, <span class="math inline">\(P_{\theta \in \Theta}\)</span> are all the possible Poisson distributions and if our model is well specified the true distribution that governs the arrival of customers in our shop is a Poisson distribution with a certain parameter lambda.</p>
+</div>
+<div id="identifiable" class="section level4">
+<h4>Identifiable</h4>
+<p><em>A model is identifiable if there is a one-to-one relationship between <span class="math inline">\(\theta\)</span> and <span class="math inline">\(P_\theta\)</span>.</em><br />
+In simple terms, what this means is this:
+If you are given that <span class="math inline">\(P_{\theta_1} = P_{\theta_2}\)</span>, then <span class="math inline">\(\theta_1 = \theta_2\)</span></p>
+<p>By extention this also means that if you are given <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span>, with <span class="math inline">\(\theta_1 &lt;&gt; \theta_2\)</span>, then <span class="math inline">\(P_{\theta_1} &lt;&gt; P_{\theta_2}\)</span></p>
+</div>
+</div>
 </div>

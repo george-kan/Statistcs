@@ -74,7 +74,7 @@ ggplot(poisson_plot, aes(x, Probability, color = factor(lambda))) +
 
 ```
 As can be seen from the chart the Poisson distribution changes depending on the value of lambda that we select. For example, it is far more likely that we are going to have 0 or 1 customer in an hour if lambda equals 1 than if lambda equals 6.  
-Therefore, we can say that if our assumptions are correct, the good approximation for modeling the reality of customer arrivals is a Poisson distribution with a certain specific parameter lambda.
+Therefore, we can say that if our assumptions are correct, a good approximation for modeling the reality of customer arrivals is a Poisson distribution with a certain specific parameter lambda.
 
 
 Which brings us to the more formal definition of a statistical model:
@@ -89,3 +89,29 @@ The components of the pair are:
 3. $\theta$ is the parameter of our distribution. In our case this parameter is **lambda**  
 
 4. ${\Theta}$ is the parameter space. Basically where does our parameter(s) live? In the shop example, since we have a Poisson distribution lambda can only be positive and therefore $\Theta = (0, +\infty)$ 
+
+### _Desirable properties of statistical models_
+
+#### Well specified
+
+_A model is well specified if for a certain value of the parameter $\theta$ we can obtain the true distribution (the distribution that governs reality)._
+
+This means that if we have the space of all probability distributions (an infinite space which contains any distribution you can imagine) and we narrow it down to a family of distributions $P_{\theta \in \Theta}$ (green rectangle), then our model is well specified if the true distribution $\color{blue}P$ that is generating our data is included in that family (in the green rectangle).
+```{r echo=F}
+plot(c(100, 200), c(300, 450), type= "n", main = "Space of all probability distributions", xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+rect(100, 300, 125, 350, col = "lightgreen") # transparent
+text(148, 370, expression(P[theta %in% Theta]), cex=1.5)
+arrows(126, 352, 140, 365, code = 1)
+points(120, 310, pch = 19)
+text(120, 320, expression(P), cex = 1.5, col = "blue")
+```
+In our shop example, $P_{\theta \in \Theta}$ are all the possible Poisson distributions and if our model is well specified the true distribution that governs the arrival of customers in our shop is a Poisson distribution with a certain parameter lambda.
+
+#### Identifiable
+
+_A model is identifiable if there is a one-to-one relationship between $\theta$ and $P_\theta$._  
+In simple terms, what this means is this:
+If you are given that $P_{\theta_1} = P_{\theta_2}$, then $\theta_1 = \theta_2$
+
+By extention this also means that if you are given $\theta_1$ and $\theta_2$, with $\theta_1 <> \theta_2$, then $P_{\theta_1} <> P_{\theta_2}$   
+
