@@ -12,5 +12,11 @@ tags: []
 <div id="why-do-we-need-an-estimator" class="section level2">
 <h2><em>Why do we need an estimator?</em></h2>
 <p>In the previous <a href="/2020/08/25/first-post/">post</a> we discussed statistical models and the idea that a statistical model is a pair <span class="math inline">\({\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}\)</span>. We also discussed the fact that if our model is well specified then the true distribution (the one that governs reality) will be included in our selected family of distributions <span class="math inline">\(P_{\theta \in \Theta}\)</span> for certain <span class="math inline">\(\theta\)</span>. But we did not discuss at all how we can estimate this <span class="math inline">\(\theta\)</span>. This is were <em>estimators</em> come into play.</p>
-<p>Suppose we have a true distribution with the true parameter <span class="math inline">\(\color{blue}\theta\)</span> and we can obtain data from that distribution. Our goal is to be able to “guess” what that parameter is by using the data.</p>
+<p>Suppose we have a true distribution with the true parameter <span class="math inline">\(\color{blue}\theta\)</span> and we can obtain data from that distribution. Our goal is to be able to “guess” what that parameter is by using the data. In particular, what we need is a function that takes as input data from the true distribution and outputs a “guess” or an estimate for the true parameter <span class="math inline">\(\color{blue}\theta\)</span>.</p>
+<p>fd</p>
+<pre class="r"><code>for (i in 1:5) {
+  hist(rpois(i*2000, lambda = 2), freq = T, breaks = 0:10)
+  #pie(c(i %% 2, 6), col = c(&#39;red&#39;, &#39;yellow&#39;), labels = NA)
+}</code></pre>
+<p><img src="/post/2020-08-27-estimators_files/figure-html/unnamed-chunk-2-.gif" width="672" /></p>
 </div>

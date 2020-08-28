@@ -7,8 +7,29 @@ categories: []
 tags: []
 ---
 
+```{r echo = F, warning = F}
+library(data.table)
+library(ggplot2)
+library(animation)
+library(gifski)
+theme_set(theme_light())
+```
+
 ## _Why do we need an estimator?_
 
 In the previous [post](/2020/08/25/first-post/) we discussed statistical models and the idea that a statistical model is a pair ${\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}$. We also discussed the fact that if our model is well specified then the true distribution (the one that governs reality) will be included in our selected family of distributions $P_{\theta \in \Theta}$ for certain $\theta$. But we did not discuss at all how we can estimate this $\theta$. This is were *estimators* come into play.    
 
-Suppose we have a true distribution with the true parameter $\color{blue}\theta$ and we can obtain data from that distribution. Our goal is to be able to "guess" what that parameter is by using the data. 
+Suppose we have a true distribution with the true parameter $\color{blue}\theta$ and we can obtain data from that distribution. Our goal is to be able to "guess" what that parameter is by using the data. In particular, what we need is a function that takes as input data from the true distribution and outputs a "guess" or an estimate for the true parameter $\color{blue}\theta$.
+
+fd
+
+```{r, animation.hook="gifski"}
+for (i in 1:5) {
+  hist(rpois(i*2000, lambda = 2), freq = T, breaks = 0:10)
+  #pie(c(i %% 2, 6), col = c('red', 'yellow'), labels = NA)
+}
+```
+
+
+
+
