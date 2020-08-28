@@ -17,7 +17,7 @@
       <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/08/27/estimators/</guid>
-      <description>Estimators</description>
+      <description>Why do we need an estimator?In the previous post we discussed statistical models and the idea that a statistical model is a pair \({\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}\). We also discussed the fact that if our model is well specified then the true distribution (the one that governs reality) will be included in our selected family of distributions \(P_{\theta \in \Theta}\) for certain \(\theta\). But we did not discuss at all how we can estimate this \(\theta\).</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>/2020/08/25/first-post/</guid>
-      <description>Statistical models, what are they?Statistical models are a way of approximating reality.
+      <description>Statistical models, what are they?Statistical models are a way of approximating reality using probability distributions.
 Let’s say that we want to analyse the hourly number of customers coming to a shop from 9-5 in order to assess how many people are needed to work. To that extent, we measure the number of customers that we observed in a day and the results looked like this:
 Time intervalCustomers9-10310-11211-12112-13313-14214-15115-16016-173Our goal is to be able to explain reality using probabilities.</description>
     </item>
