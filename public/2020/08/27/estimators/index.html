@@ -57,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">2 min read</span>
+    <span class="article-duration">3 min read</span>
     
 
     <h1 class="article-title">Estimators</h1>
@@ -72,13 +72,26 @@
 
 <div id="why-do-we-need-an-estimator" class="section level2">
 <h2><em>Why do we need an estimator?</em></h2>
-<p>In the previous <a href="/2020/08/25/first-post/">post</a> we discussed statistical models and the idea that a statistical model is a pair <span class="math inline">\({\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}\)</span>. We also discussed the fact that if our model is well specified then the true distribution (the one that governs reality) will be included in our selected family of distributions <span class="math inline">\(P_{\theta \in \Theta}\)</span> for certain <span class="math inline">\(\theta\)</span>. But we did not discuss at all how we can estimate this <span class="math inline">\(\theta\)</span>. This is were <em>estimators</em> come into play.</p>
-<p>Suppose we have a true distribution with the true parameter <span class="math inline">\(\color{blue}\theta\)</span> and we can obtain sample data from that distribution. Our goal is to be able to estimate quantities of the true distribution such as <span class="math inline">\(\color{blue}\theta\)</span>, its mean or its median by using the sample data. In particular, what we need is a function that takes as input the sample data from the true distribution and outputs a “guess” or an estimate for the quantity of the true distribution we are interested in.</p>
-<p>As an example, suppose the true distribution is a Poisson with lambda = 2 (<strong>lambda is unknown to us</strong>) and we can obtain sample data as seen in the picture below.<br />
+<p>In the previous <a href="/2020/08/25/first-post/">post</a> we discussed statistical models and the idea that a statistical model is a pair <span class="math inline">\({\left(S, \{ P_\theta \} _{\theta \in \Theta }\right)}\)</span>. We also discussed the fact that if our model is well specified then the true distribution (the one that governs reality) will be included in our selected family of distributions <span class="math inline">\(P_{\theta \in \Theta}\)</span> for certain <span class="math inline">\(\theta\)</span>. But we did not discuss at all how we can estimate this <span class="math inline">\(\theta\)</span>. This is where <em>estimators</em> come into play.</p>
+<p>Suppose we have a true distribution with the true parameter <span class="math inline">\(\color{blue}\theta\)</span> and we can obtain sample data from that distribution. Our goal is to be able to estimate quantities of the true distribution such as <span class="math inline">\(\color{blue}\theta\)</span>, its mean, its median etc. by using the sample data. In particular, what we need is a function that takes as input the sample data from the true distribution and outputs a “guess” or an estimate for the quantity of the true distribution we are interested in.</p>
+<p>As an example, suppose the true distribution is a Poisson with lambda = 2 (<strong>lambda is unknown to us</strong>) and we can obtain sample data as seen in the picture below.
 <em>What would be a good guess for lambda given the sample data?</em></p>
-<p><img src="/post/2020-08-27-estimators_files/figure-html/unnamed-chunk-2-.gif" width="672" />
-To answer this question we have to think a bit about our distribution. If <span class="math inline">\(X\)</span> follows a Poisson distribution with parameter lambda, then we know that the mean of <span class="math inline">\(X\)</span> equals lambda (<span class="math inline">\(E[X] = \lambda\)</span>). That gives a hint as to what would be a good estimator for lambda, the sample mean. And looking at the chart above, we see that as the sample size goes bigger, the sample mean tends goes to 2 which is indeed the lambda of the true distribution.</p>
+<p><img src="/post/2020-08-27-estimators_files/figure-html/unnamed-chunk-2-.gif" width="672" /></p>
+<div id="lets-talk-briefly-about-samples" class="section level3">
+<h3><em>Let’s talk (briefly) about samples</em></h3>
+<p>How exactly should you conceptualise the idea of a sample of size 50 from a distribution?<br />
+For this I am going to use the typical (fair) coin tossing example.</p>
+<p>The easiest way to answer the question “What do we mean by a sample of size 50?” is “Well flip the coin 50 times and see what comes up!”</p>
+<p>While this is an intuitive way of understanding a sample, it is unfortunately not very helpful for statistical calculations. What we would like to do is to be able to treat each of the 50 samples as a random variable in order to calculate expectations, variances, distributions etc.</p>
+<p>That is why we treat a sample of size 50 as the realisation of 50 independent and identically distributed (i.i.d) random variables with the same distribution.</p>
+<p>Basically what we mean by this is that instead of viewing the sample as “Taking 1 coin and flipping it 50 times”, we can equivalently view it as “Taking 50 coins which have the same probability of landing heads and flipping all of them 1 time”</p>
+<p>We write this as <span class="math inline">\(X_1, \ldots , X_{50} \stackrel{iid}{\sim } Ber(0.5)\)</span>, which means that <span class="math inline">\(X_1 - X_{50}\)</span> are independent and identically distributed random variables following a <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a> with parameter <span class="math inline">\(p = 0.5\)</span>.</p>
+<p>To answer this question we have to think a bit about our distribution. If <span class="math inline">\(X\)</span> follows a Poisson distribution with parameter lambda, then we know that the mean of <span class="math inline">\(X\)</span> equals lambda (<span class="math inline">\(E[X] = \lambda\)</span>). That gives a hint as to what would be a good estimator for lambda, the sample mean.</p>
+<p>What is also clear from the picture is that the value for our estimator (the sample mean) changes depending on the sample size and the sample itself. For different samples we will get different values for our estimator.<br />
+Let’s call the estimator <span class="math inline">\(\hat{\lambda}\)</span>. It is a function of the sample which in turn is a random variable
+And looking at the chart above, we see that as the sample size goes bigger, the sample mean goes to 2 which is indeed the lambda of the true distribution.</p>
 <p>But are we sure that it is a good estimator? What if it was by chance? Can we quantify how good an estimator is?</p>
+</div>
 </div>
 
     </div>
