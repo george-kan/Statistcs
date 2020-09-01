@@ -6,10 +6,21 @@
     <description>Recent content in Posts on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Law of large numbers and the central limit theorem</title>
+      <link>/2020/08/31/law-of-large-numbers-and-the-central-limit-theorem/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/08/31/law-of-large-numbers-and-the-central-limit-theorem/</guid>
+      <description>Let’s talk (briefly) about samplesHow exactly should you conceptualise the idea of a sample of size 50 from a distribution?
+For this I am going to use the typical (fair) coin tossing example.
+The easiest way to answer the question “What do we mean by a sample of size 50?” is “Well flip the coin 50 times and see what comes up!”</description>
+    </item>
     
     <item>
       <title>Estimators</title>

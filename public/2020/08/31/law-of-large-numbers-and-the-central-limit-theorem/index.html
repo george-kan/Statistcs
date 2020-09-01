@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.74.3" />
+
+
+<title>Law of large numbers and the central limit theorem - A Hugo website</title>
+<meta property="og:title" content="Law of large numbers and the central limit theorem - A Hugo website">
+
+
+  <link href='/knowledge-1052014_1920.jpg' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/knowledge-1052014_1920.jpg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/george-kan">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">Law of large numbers and the central limit theorem</h1>
+
+    
+    <span class="article-date">2020-08-31</span>
+    
+
+    <div class="article-content">
+      
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet/leaflet.js"></script>
+<link href="/rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet-binding/leaflet.js"></script>
+
+
+<div id="lets-talk-briefly-about-samples" class="section level3">
+<h3><em>Let’s talk (briefly) about samples</em></h3>
+<p>How exactly should you conceptualise the idea of a sample of size 50 from a distribution?<br />
+For this I am going to use the typical (fair) coin tossing example.<br />
+<img src="/post/2020-08-27-estimators_files/coin.jpg" alt="coin" /></p>
+<p>The easiest way to answer the question “What do we mean by a sample of size 50?” is “Well flip the coin 50 times and see what comes up!”</p>
+<p>While this is an intuitive way of understanding a sample, it is unfortunately not very helpful for statistical calculations. What we would like to do is to be able to treat each of the 50 samples as a random variable in order to calculate expectations, variances, distributions etc.</p>
+<p>That is why we treat a sample of size 50 as the realisation of 50 independent and identically distributed (i.i.d) random variables with the same distribution.</p>
+<p>Basically what we mean by this is that instead of viewing the sample as “Taking 1 coin and flipping it 50 times”, we can equivalently view it as “Taking 50 coins which have the same probability of landing heads and flipping all of them 1 time”</p>
+<p>We write this as <span class="math inline">\(X_1, \ldots , X_{50} \stackrel{iid}{\sim } Ber(0.5)\)</span>, which means that the random variables <span class="math inline">\(X_1 - X_{50}\)</span> are independent and identically distributed and follow a <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a> with parameter <span class="math inline">\(p = 0.5\)</span> (the probability of success or heads).</p>
+<p>With this in mind let’s move on to two of the most important theorems of statistics.</p>
+</div>
+<div id="the-law-of-large-numbers-lln" class="section level3">
+<h3><em>The Law of large numbers (LLN)</em></h3>
+<p>The law of large numbers (LLN) states that if we take the average of multiple trials of a probabilistic experiment, this average will end up being very close to the expected value of the experiment as the number of trials increases.</p>
+<p>Let’s see how this relates in practice to our coin tossing example.</p>
+<p>As we mentioned before a coin toss can be represented using a Bernoulli distribution with certain parameter <span class="math inline">\(p\)</span>. The chart to the left represents an unbiased coin (same probability of heads or tails) while the one to the right a biased coin (probability of heads is equal to 0.7).</p>
+<p><img src="/post/2020-08-31-law-of-large-numbers-and-the-central-limit-theorem_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+What is the expected value of our distributions?<br />
+The expected value of a Bernoulli random variable is equal to the probability of heads. In the charts above the expected value of the unbiased coin is <span class="math inline">\(E[X] = 0.5\)</span> and for the biased coin <span class="math inline">\(E[Y] = 0.7\)</span>.</p>
+<p>The law of large numbers is saying that if you toss a big number of coins and take the average of the results of those coin tosses (1 for heads and 0 for tails) then this number will go closer and closer to the expected value. Let’s see this in practice for the biased coin (<span class="math inline">\(E[Y] = 0.7\)</span>).</p>
+<pre><code>## Warning: package &#39;leaflet&#39; was built under R version 4.0.2</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addPopups","args":[42.0285,-93.65,"Here is the <b>Department of Statistics<\/b>, ISU",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"setView":[[42.0285,-93.65],17,[]],"limits":{"lat":[42.0285,42.0285],"lng":[-93.65,-93.65]}},"evals":[],"jsHooks":[]}</script>
+<p><span class="math inline">\(a \overset{p}{\to} b\)</span></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

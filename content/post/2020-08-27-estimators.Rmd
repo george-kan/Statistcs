@@ -41,27 +41,23 @@ for (i in sample_intervals) {
 ```
 
  
-### _Let's talk (briefly) about samples_ ###
-
-How exactly should you conceptualise the idea of a sample of size 50 from a distribution?  
-For this I am going to use the typical (fair) coin tossing example.  
 
 
-The easiest way to answer the question "What do we mean by a sample of size 50?" is "Well flip the coin 50 times and see what comes up!"   
 
-While this is an intuitive way of understanding a sample, it is unfortunately not very helpful for statistical calculations. What we would like to do is to be able to treat each of the 50 samples as a random variable in order to calculate expectations, variances, distributions etc.
+### _Back to searching for lambda_ ###
 
-That is why we treat a sample of size 50 as the realisation of 50 independent and identically distributed (i.i.d) random variables with the same distribution.  
-
-Basically what we mean by this is that instead of viewing the sample as "Taking 1 coin and flipping it 50 times", we can equivalently view it as "Taking 50 coins which have the same probability of landing heads and flipping all of them 1 time"
-
-We write this as $X_1, \ldots , X_{50} \stackrel{iid}{\sim } Ber(0.5)$, which means that $X_1 - X_{50}$ are independent and identically distributed random variables following a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution) with parameter $p = 0.5$.
+Coming back to our original question we were trying to find a good guess for lambda given the sample data.  
+To answer this question we have to think a bit about our distribution. If $X$ follows a Poisson distribution with parameter lambda, then we know that the mean of $X$ equals lambda ($E[X] = \lambda$).  
+In our example, as we discussed previously we view the samples as $X_1, \ldots , X_{n} \stackrel{iid}{\sim } Pois(\lambda)$ where $\lambda$ is the true parameter of the distribution we are looking for. Therefore, we know that $E[X_1] = E[X_2] = ... = E[X_n] = \lambda$
 
 
 
 
 
-To answer this question we have to think a bit about our distribution. If $X$ follows a Poisson distribution with parameter lambda, then we know that the mean of $X$ equals lambda ($E[X] = \lambda$). That gives a hint as to what would be a good estimator for lambda, the sample mean. 
+
+
+
+That gives a hint as to what would be a good estimator for lambda, the sample mean. 
 
 What is also clear from the picture is that the value for our estimator (the sample mean) changes depending on the sample size and the sample itself. For different samples we will get different values for our estimator.  
 Let's call the estimator $\hat{\lambda}$. It is a function of the sample which in turn is a random variable

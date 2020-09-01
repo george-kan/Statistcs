@@ -1,0 +1,78 @@
+---
+title: Law of large numbers and the central limit theorem
+author: George
+date: '2020-08-31'
+slug: law-of-large-numbers-and-the-central-limit-theorem
+categories: []
+tags: []
+---
+
+```{r echo = F, warning = F}
+library(data.table)
+library(ggplot2)
+library(animation)
+library(gifski)
+library(shiny)
+theme_set(theme_light())
+```
+
+
+### _Let's talk (briefly) about samples_ ###
+
+How exactly should you conceptualise the idea of a sample of size 50 from a distribution?  
+For this I am going to use the typical (fair) coin tossing example.  
+![coin](/post/2020-08-27-estimators_files/coin.jpg)
+
+The easiest way to answer the question "What do we mean by a sample of size 50?" is "Well flip the coin 50 times and see what comes up!"   
+
+While this is an intuitive way of understanding a sample, it is unfortunately not very helpful for statistical calculations. What we would like to do is to be able to treat each of the 50 samples as a random variable in order to calculate expectations, variances, distributions etc.
+
+That is why we treat a sample of size 50 as the realisation of 50 independent and identically distributed (i.i.d) random variables with the same distribution.  
+
+Basically what we mean by this is that instead of viewing the sample as "Taking 1 coin and flipping it 50 times", we can equivalently view it as "Taking 50 coins which have the same probability of landing heads and flipping all of them 1 time"
+
+We write this as $X_1, \ldots , X_{50} \stackrel{iid}{\sim } Ber(0.5)$, which means that the random variables $X_1 - X_{50}$ are independent and identically distributed and follow a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution) with parameter $p = 0.5$ (the probability of success or heads).
+
+With this in mind let's move on to two of the most important theorems of statistics.
+
+
+### _The Law of large numbers (LLN)_ ###
+
+The law of large numbers (LLN) states that if we take the average of multiple trials of a probabilistic experiment, this average will end up being very close to the expected value of the experiment as the number of trials increases. 
+
+Let's see how this relates in practice to our coin tossing example.
+
+As we mentioned before a coin toss can be represented using a Bernoulli distribution with certain parameter $p$. The chart to the left represents an unbiased coin (same probability of heads or tails) while the one to the right a biased coin (probability of heads is equal to 0.7).
+
+```{r , echo = F}
+par(mfrow=c(1,2), oma = c(0, 0, 1, 0))
+x = c(0, 1)
+plot(x, dbinom(x, 1, prob = 0.5), type = "h", xlim=c(0,1.05),ylim=c(0,1), lwd=2,col="blue",ylab="Probability", xlab = "Unbiased coin (X)", xaxt = "n")
+points(x, dbinom(x, 1, prob = 0.5),pch=16,cex=2,col="dark blue")
+axis(1, at=c(0, 0.5, 1),labels=c(0, 0.5, 1))
+plot(x, dbinom(x, 1, prob = 0.7), type = "h", xlim=c(0,1.05),ylim=c(0,1), lwd=2,col="dark green", ylab = "", xlab = "Biased coin (Y)", xaxt = "n")
+points(x, dbinom(x, 1, prob = 0.7),pch=16,cex=2,col="dark green")
+axis(1, at=c(0, 0.5, 1),labels=c(0, 0.5, 1))
+mtext("Representing coin tosses using the Bernoulli distribution", outer = T)
+```
+What is the expected value of our distributions?  
+The expected value of a Bernoulli random variable is equal to the probability of heads. In the charts above the expected value of the unbiased coin is $E[X] = 0.5$ and for the biased coin $E[Y] = 0.7$.
+
+The law of large numbers is saying that if you toss a big number of coins and take the average of the results of those coin tosses (1 for heads and 0 for tails) then this number will go closer and closer to the expected value. Let's see this in practice for the biased coin ($E[Y] = 0.7$).
+
+```{r out.width='100%', echo=FALSE}
+library(leaflet)
+leaflet() %>% addTiles() %>%
+  setView(-93.65, 42.0285, zoom = 17) %>%
+  addPopups(
+    -93.65, 42.0285,
+    'Here is the <b>Department of Statistics</b>, ISU'
+  )
+```
+
+
+
+
+
+
+$a \overset{p}{\to} b$
